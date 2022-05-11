@@ -1,0 +1,921 @@
+/* Variables  */
+:root {
+  --main-background-color: #eaeded6b;
+  --secondary-background-color: #232f3e;
+  --contrast-background-color: #febd69;
+  --contrast-hover-color: #f3a43d;
+  --light-mode-color: #fff;
+  --error-color: red;
+  --error-light-color: #ffd7d7;
+}
+
+/** CSS Animation Groups **/
+@keyframes textZoomInOut {
+  from {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Slide in from top right corner */
+@keyframes slide-top-right {
+  0% {
+    opacity: 0;
+    transform: translate(50%, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* Slide in from right middle */
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* FADE IN Animation*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade in top to down*/
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Fade Out */
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Height Change*/
+@keyframes heightChange {
+  from {
+    height: 0;
+  }
+  to {
+    height: 450px;
+  }
+}
+
+/* End of Animation */
+
+/* HTML Tags Style */
+html,
+body {
+  height: 100%;
+  background: var(--main-background-color);
+  touch-action: manipulation;
+}
+
+button:hover {
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+
+button:active {
+  touch-action: pan-y pinch-zoom;
+}
+
+/* ID's */
+#root {
+  height: 100%;
+  position: relative;
+}
+
+/* classes */
+.mainContainer {
+  background: var(--secondary-background-color);
+  padding: 0.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.appLogoText {
+  font-weight: bold;
+  color: var(--contrast-background-color);
+  font-size: larger;
+}
+
+.appLogoText:hover {
+  color: var(--contrast-hover-color);
+}
+
+.appLogo {
+  animation: textZoomInOut 6s ease-in-out;
+  float: left;
+}
+
+.appLogoImage {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.searchArea {
+  width: 40%;
+  padding-left: 2rem;
+  display: inline-block;
+}
+
+.searchButton {
+  width: 3rem;
+  position: absolute;
+  min-height: 2.35rem;
+  color: var(--secondary-background-color);
+  background: var(--contrast-background-color);
+  border-radius: 0 5px 5px 0;
+  border: 0;
+}
+
+.searchContent {
+  padding-left: 1rem;
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
+}
+
+.searchInput {
+  width: 90%;
+  min-height: 2rem;
+  font-size: large;
+  padding: 2.75px;
+  border-radius: 5px 0 0 5px;
+  border: 0;
+  box-shadow: none;
+}
+
+.searchInput:focus {
+  outline: none;
+  border: 0;
+  box-shadow: 0 0 0 0.5pt var(--contrast-background-color);
+}
+
+.searchButton:hover {
+  background: var(--contrast-hover-color);
+}
+
+.couponCard {
+  animation: fadeIn 1s ease-in-out;
+  background: #fff;
+  min-width: 350px;
+  max-width: 390px;
+  min-height: 200px;
+  height: 250px;
+  border-radius: 5px;
+  margin: 5px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.4);
+  transition: all 0.5s ease;
+}
+
+.cardBody {
+  display: inline-block;
+}
+
+.couponCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+  /* Zooming Effect*/
+  -ms-transform: scale(1.01); /* IE 9 */
+  -webkit-transform: scale(1.01); /* Safari 3-8 */
+  transform: scale(1.01);
+}
+.cardHeader {
+  height: 51px;
+}
+
+.cardHeaderText {
+  padding-left: 1rem;
+  padding-top: 3px;
+  display: inline-block;
+}
+
+.cardTypeImage {
+  width: 60px;
+  height: 45px;
+}
+.cardImageHolder {
+  overflow: hidden;
+  float: left;
+  border-radius: 5px;
+  height: 45px;
+  margin: 3px;
+  width: 60px;
+}
+
+.cardTitle {
+  font-weight: bold;
+}
+
+.cardSubTitle {
+  font-size: small;
+  font-style: italic;
+}
+
+.cardFooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: 0;
+  height: 40px;
+  border-radius: 0 0 5px 5px;
+}
+
+.cardLeftContent {
+  text-align: center;
+  float: left;
+  padding: 5px;
+  height: 155px;
+  width: 125px;
+  background: var(--main-background-color);
+}
+
+.cardRightContent {
+  width: calc(100% - 165px);
+  float: right;
+  padding: 7px;
+  margin-left: 1rem;
+}
+
+.beginButton,
+.endButton {
+  float: right;
+  height: 2rem;
+  margin: 2px;
+  border-radius: 4px;
+  font-size: medium;
+  font-weight: bold;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  background: transparent;
+  color: var(--secondary-background-color);
+  border: 0;
+}
+
+.beginButton {
+  float: left;
+  margin: 0.5rem;
+}
+
+.beginButton:hover,
+.endButton:hover {
+  border: 1px solid var(--secondary-background-color);
+  background-color: var(--contrast-background-color);
+  color: var(--secondary-background-color);
+}
+.cardPrice {
+  margin: 0;
+}
+
+.priceText {
+  color: #0f790f;
+}
+
+.onlyExchange {
+  color: darkred;
+}
+
+.subText {
+  font-size: small;
+  font-style: italic;
+}
+
+.cardContentAttributes {
+  margin-bottom: 5px;
+  border-bottom: 1px dotted #ccc;
+}
+
+.actionContainer {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.headerButton {
+  margin-left: 5px;
+  background: transparent;
+  border: 1px solid var(--light-mode-color);
+  border-radius: 4px;
+  color: var(--light-mode-color);
+}
+
+.headerButton:hover {
+  color: var(--contrast-hover-color);
+  border: 1px solid var(--contrast-hover-color);
+}
+
+.headerButton:focus {
+  box-shadow: 0 0 0 0.5pt var(--contrast-background-color);
+}
+
+.iconButton {
+  padding-top: 4px;
+}
+
+/* Modal Classes */
+.modalContainer {
+  transition: all ease 1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  z-index: 30;
+  transition: all ease 1s;
+  display: none;
+  transform: scale(0) rotate(720deg);
+  border-radius: 15px;
+  position: relative;
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 800px;
+  height: auto;
+  background: var(--light-mode-color);
+  box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.4);
+  animation: slide-out 0.3s ease-out;
+}
+
+.modal.show {
+  display: block;
+  transition: all ease 1s;
+  transform: scale(1) rotate(0deg);
+  animation: slide-right 0.3s ease-out;
+}
+
+.searchTitle {
+  display: inline-block;
+  margin: 1rem;
+  margin-bottom: 0;
+  color: var(--secondary-background-color);
+}
+
+.searchContentActions {
+  display: inline-block;
+}
+
+.searchContentButton {
+  height: 2rem;
+  background: transparent;
+  border: 0;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.searchContentButtonSelected {
+  background-color: var(--contrast-background-color);
+  color: var(--secondary-background-color);
+}
+
+.searchContentButton:hover {
+  border: 1px solid var(--secondary-background-color);
+  color: var(--secondary-background-color);
+  border-radius: 3px;
+}
+
+/* Toast */
+#toast {
+  opacity: 0;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
+.invalidState {
+  color: var(--error-color);
+  font-style: italic;
+}
+
+.cardInfo {
+  float: right;
+  padding: 4px;
+}
+
+.iconButton {
+  background: transparent;
+  border: 0;
+}
+
+.errorIcon {
+  color: var(--error-color);
+}
+
+.searchNoData {
+  margin: 1rem;
+  padding: 1rem;
+  font-size: larger;
+  text-align: center;
+  color: var(--secondary-background-color);
+  font-weight: bold;
+}
+
+/*.expiredCoupon {
+  box-shadow: 0 5px 12px 0 rgba(241, 198, 198, 0.4);
+}
+
+.expiredCoupon:hover {
+  box-shadow: 0 8px 16px 0 rgba(241, 198, 198, 0.4);
+  -ms-transform: scale(1.01); 
+  -webkit-transform: scale(1.01);
+  transform: scale(1.01);
+}*/
+
+.searchListLeftContent.detailInShow {
+  width: 450px;
+  overflow-y: auto;
+  position: absolute;
+  height: 100%;
+  display: inline-block;
+}
+
+.searchContentDetails {
+  z-index: 30;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: calc(100% - 483px);
+  padding: 1rem;
+  min-height: 400px;
+  height: 100%;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.4);
+  background: #fff;
+  display: none;
+  animation: slide-out 1s ease-out;
+  box-shadow: -3px 0 5px rgba(36, 41, 46, 0.05);
+}
+
+.searchContentDetails.show {
+  display: block;
+  animation: slide-right 0.3s ease-out;
+}
+
+.detailTitle {
+  width: 90%;
+  display: inline-block;
+}
+.detailHeaderAction {
+  float: right;
+  margin: -10px;
+}
+
+.actionIconButton {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  color: var(--secondary-background-color);
+}
+
+.actionIconButton:hover {
+  color: var(--contrast-hover-color);
+}
+
+.subHeaderContainer {
+  height: 2rem;
+  padding: 5px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.searchCarousel {
+  white-space: nowrap;
+  position: relative;
+}
+
+.navigation {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  width: 2.25rem;
+  z-index: 1;
+  background: var(--contrast-background-color);
+}
+
+.navigation:hover {
+  background: var(--contrast-hover-color);
+  transform: scale(1.15);
+  transition: all 0.5s ease;
+}
+.leftNavigation {
+  left: -5px;
+  float: left;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.rightNavigation {
+  top: 0;
+  right: -5px;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.leftNavigation.show,
+.rightNavigation.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.carouselContent {
+  width: calc(100% - 2.25rem);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 2.25rem;
+  position: absolute;
+}
+
+.carouselContent.moveRight {
+  left: 2.25rem;
+}
+
+.carouselItems {
+  position: relative;
+  display: inline-block;
+  transition: left 2s ease-in-out 0s;
+}
+.carouselButton {
+  height: fit-content;
+  width: auto;
+  margin: 2px;
+  border-radius: 4px;
+  font-size: medium;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  background: transparent;
+  color: var(--secondary-background-color);
+  border: 1px solid #ccc;
+}
+
+.carouselButtonSelected {
+  border: 1px solid var(--secondary-background-color);
+  background-color: var(--contrast-background-color);
+  color: var(--secondary-background-color);
+}
+
+.carouselButton:hover {
+  border: 1px solid var(--secondary-background-color);
+  color: var(--secondary-background-color);
+}
+
+#root.hideOverflow {
+  overflow: hidden;
+}
+
+.exchangeTypeText {
+  font-size: small;
+}
+
+.exchangeTypeTitle {
+  margin-top: 2px;
+}
+
+.subCardHeader {
+  font-style: oblique;
+  font-weight: 500;
+}
+
+.quantityText {
+  margin-left: 5px;
+  font-weight: 500;
+}
+
+.mediumText {
+  font-size: medium;
+}
+
+.freeCouponText {
+  font-size: larger;
+  font-weight: bold;
+  color: var(--contrast-hover-color);
+}
+
+/* Add Coupon Modal Input Styling*/
+.addCouponBody {
+  border-radius: 15px;
+  min-height: 300px;
+  max-height: 350px;
+  padding: 1rem;
+  padding-bottom: 0;
+  background: var(--light-mode-color);
+}
+
+.half-circle {
+  overflow: hidden;
+  z-index: 99;
+  display: inline-block;
+  top: 15%;
+  width: 37px;
+  height: 250px;
+  background-color: var(--secondary-background-color);
+  border-bottom-right-radius: 70px;
+  border-top-right-radius: 70px;
+  border-left: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.verticalTitle {
+  overflow: hidden;
+  font-size: x-large;
+  font-weight: bold;
+  color: var(--contrast-background-color);
+  transform: rotate(-90deg);
+  width: 150px;
+  top: 44%;
+  height: 2rem;
+  left: -57px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formModalInput,
+.couponInput {
+  color: var(--secondary-background-color);
+  border: 0;
+  width: calc(100% - 14px);
+  font-size: medium;
+  padding: 7px;
+  border-bottom: 1px dotted #ccc;
+  /* box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);*/
+}
+
+.checkInvalid .couponSelectInput:invalid,
+.checkInvalid .couponInput:invalid {
+  /*.class:not(:placeholder-shown):invalid*/
+  border-bottom: 1px dashed #900;
+  border-color: #900;
+}
+
+.formModalInput:focus,
+.couponInput:focus,
+.couponSelectInput:focus {
+  outline: none;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 0 0.5pt var(--secondary-background-color);
+}
+
+.checkInvalid .couponInput:focus:invalid,
+.checkInvalid .couponSelectInput:focus:invalid {
+  border: 0;
+  box-shadow: 0 0 0 0.5pt #900;
+}
+
+.couponSelectInput {
+  color: var(--secondary-background-color);
+  border: 0;
+  padding: 5px;
+  font-size: medium;
+  border-bottom: 1px dotted #ccc;
+}
+
+.form-group {
+  padding: 10px;
+  display: inline-block;
+}
+
+.couponTitle {
+  width: 97%;
+}
+
+.couponDescription {
+  width: 94%;
+  margin-left: 2rem;
+}
+
+.couponDescTextArea {
+  resize: none;
+}
+
+.sectionContainers {
+  margin-left: 5rem;
+  position: relative;
+}
+
+.section {
+  float: left;
+  width: 33%;
+  min-width: 200px;
+}
+
+.modalFooter {
+  height: 3rem;
+  bottom: 0;
+}
+
+.modalFooter .endButton {
+  margin: 0.5rem;
+}
+
+.barCodeText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  margin-top: -15px;
+  font-size: xx-small;
+}
+
+select option {
+  color: var(--secondary-background-color);
+}
+
+select option[data-default] {
+  color: #888;
+}
+
+.defaultSelectValue {
+  color: #888;
+}
+
+input:disabled {
+  border-radius: 5px;
+  cursor: default;
+  background-color: rgb(235, 235, 228);
+}
+
+select:disabled {
+  border-radius: 5px;
+  cursor: default;
+  background-color: rgb(235, 235, 228);
+  /*background-color:rgb(204, 204, 203);*/
+}
+
+/** user entry modal **/
+
+.userEntry {
+  z-index: 30;
+  display: none;
+  border-radius: 5px;
+  position: relative;
+  margin: 0 auto;
+  min-width: 400px;
+  height: 0;
+  background: var(--light-mode-color);
+  box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.4);
+  animation: fadeout 0.4s ease-out;
+  transition: height 500ms 500ms;
+}
+
+.userEntry.show {
+  transition: height 2s;
+  display: block;
+  height: auto;
+  animation: fadeInDown 0.4s ease-out;
+}
+
+.userEntryBody {
+  max-width: 500px;
+  min-height: 150px;
+  padding: 1rem;
+  background: var(--light-mode-color);
+  animation: fadeIn 2s;
+}
+
+.userEntryHeader {
+  min-height: 3rem;
+  display: flex;
+}
+.userEntryTitle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  font-size: larger;
+  margin-left: 40px;
+}
+
+.userEntryHeaderActions {
+  margin: 10px;
+  margin-bottom: 0;
+  float: right;
+}
+
+.entryFormGroup {
+  width: 100%;
+}
+.formModalInput {
+  width: calc(100% - 46px);
+  margin: 16px;
+  min-height: 2rem;
+  font-size: large;
+}
+
+.userInfo {
+  display: inline-block;
+  color: white;
+  margin-right: 10px;
+  width: 90px;
+}
+
+.messageArea {
+  padding: 5px;
+  min-height: 2rem;
+  width: calc(100% - 10px);
+  border: 1px solid var(--secondary-background-color);
+  border-radius: 5px;
+  background: var(--error-light-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary-background-color);
+}
+
+.checkInvalid .formModalInput:invalid {
+  border-bottom: 1px dashed #900;
+  border-color: #900;
+}
+
+.checkInvalid .formModalInput:focus:invalid {
+  border: 0;
+  box-shadow: 0 0 0 0.5pt #900;
+}
+
+.sectionHeader {
+  width: 100%;
+  display: inline-block;
+}
+
+.sectionHeader .entryFormGroup {
+  display: inline-block;
+  width: 50%;
+}
+
+.signUpContent {
+  transition: min-height 1s;
+  animation: fadeIn 1s;
+}
+
+.usernameSpan {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inherit;
+}
